@@ -1,0 +1,88 @@
+<nav class="navbar">
+    <div class="logo">
+      <a routerLink="/home">
+        <img src="assets/icon128px.png" alt="Logo de página" id="icon" />
+        <span>Click2Book</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a routerLink="/home"><i class="bi bi-house"></i> Home</a></li>
+      <li><a routerLink="/pensiones"><i class="bi bi-building"></i> Pensiones</a></li>
+      <li><a href="#"><i class="bi bi-bookmark-check"></i> Guardados</a></li>
+      <li><a href="#"><i class="bi bi-wrench"></i> Ayuda</a></li>
+      <li><a routerLink="/login"><i class="bi bi-person-circle"></i></a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <section id="filters">
+      <form>
+        <div id="filter-inputs">
+          <div class="filter-select">
+            <select>
+              <option value="">Todos</option>
+              <option value="casa">Casa</option>
+              <option value="apartamento">Apartamento</option>
+              <option value="apartaestudio">Apartaestudio</option>
+            </select>
+          </div>
+          <div class="filter-select">
+            <select>
+              <option value="">Todos</option>
+              <option value="villa-bella">Villa Bella</option>
+              <option value="villa-marbella">Villa Marbella</option>
+              <option value="las-malvinas">Las Malvinas</option>
+            </select>
+          </div>
+          <div class="filter-number">
+            <input type="number" placeholder="$ mínimo" min="0" />
+          </div>
+          <div class="filter-number">
+            <input type="number" placeholder="$ máximo" min="0" />
+          </div>
+          <div class="filter-check">
+            <input type="checkbox" id="cupoCompleto" />
+            <label for="cupoCompleto">Cupo completo</label>
+          </div>
+          <div class="filter-check">
+            <input type="checkbox" id="ambienteFamiliar" />
+            <label for="ambienteFamiliar">Ambiente familiar</label>
+          </div>
+          <div class="filter-check">
+            <input type="checkbox" id="individual" />
+            <label for="individual">Individual</label>
+          </div>
+          <div class="filter-check">
+            <input type="checkbox" id="aire" />
+            <label for="aire">Aire acondicionado</label>
+          </div>
+        </div>
+  
+        <div id="filter-btn">
+          <button type="submit">Buscar</button>
+          <button type="reset">Restablecer filtros</button>
+        </div>
+      </form>
+    </section>
+  
+    <section id="pensiones"></section>
+  
+    <div id="paginacion">
+      <div><a href="#" class="pag-prev"><i class="bi bi-arrow-left-short"></i></a></div>
+      <div class="pagina-numeros">
+        <span>1</span>
+        <span class="pagina-activa">2</span>
+        <span>3</span>
+        <span>...</span>
+        <span>10</span>
+      </div>
+      <div><a href="#" class="pag-sig"><i class="bi bi-arrow-right-short"></i></a></div>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="footer">
+      <p id="copyrigth">© 2025 - Todos los derechos reservados</p>
+    </div>
+  </footer>
+  
