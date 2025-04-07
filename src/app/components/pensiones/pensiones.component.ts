@@ -9,5 +9,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './pensiones.component.css'
 })
 export class PensionesComponent {
+  userName: string = '';
+  ngOnInit(): void {
+    this.userName = localStorage.getItem('nombreUsuario') || 'Visitante';
+  }
 
 }

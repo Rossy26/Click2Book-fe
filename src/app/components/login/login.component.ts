@@ -25,8 +25,9 @@ export class LoginComponent {
       localStorage.setItem("tokenAcceso", response.access_token);
       localStorage.setItem("nombreUsuario", response.user_name);
       this.router.navigate(["/pensiones"]);
-      return;
     });
-    alert('¡Error en el inicio de sesión!');
+    if (!localStorage.getItem("nombreUsuario")) {
+      alert('¡Error en el inicio de sesión!');
+    }
   }
 }
