@@ -31,10 +31,12 @@ export class RegistroComponent {
     }
 
    this.registroService.register(this.nombre, this.apellido, this.correo, this.contrasena, 
-    this.confirmarContrasena, this.fechaNacimiento, this.rol).subscribe(response =>
-    {
+    this.confirmarContrasena, this.fechaNacimiento, this.rol).subscribe(response => {
       localStorage.setItem("tokenAcceso", response.access_token);
+      localStorage.setItem("idUsuario", response.user_id);
       localStorage.setItem("nombreUsuario", response.user_name);
+      localStorage.setItem("rolUsuario", response.user_role);
+      localStorage.setItem("emailUsuario", response.user_email);
       this.router.navigate(["/pensiones"]);
       return;
     });

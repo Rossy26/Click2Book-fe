@@ -23,11 +23,15 @@ export class LoginComponent {
     }
     this.loginService.login(this.email, this.password).subscribe(response => {
       localStorage.setItem("tokenAcceso", response.access_token);
+      localStorage.setItem("idUsuario", response.user_id);
       localStorage.setItem("nombreUsuario", response.user_name);
+      localStorage.setItem("rolUsuario", response.user_role);
+      localStorage.setItem("emailUsuario", response.user_email);
       this.router.navigate(["/pensiones"]);
+      
+      if (!localStorage.getItem("nombreUsuario")) {
+        alert('¡Error en el inicio de sesión!');
+      }
     });
-    if (!localStorage.getItem("nombreUsuario")) {
-      alert('¡Error en el inicio de sesión!');
-    }
   }
 }
