@@ -4,12 +4,16 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PensionesComponent } from './components/pensiones/pensiones.component';
+import { UserComponent } from './components/user/user.component';
+import { authGuard } from './guards/auth.guard';
+
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: 'home', component: HomeComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'registro', component: RegistroComponent},
-    {path: 'pensiones', component: PensionesComponent},
+    {path: 'home', component: HomeComponent, canActivate: []},
+    {path: 'login', component: LoginComponent, canActivate: []},
+    {path: 'registro', component: RegistroComponent, canActivate: []},
+    {path: 'pensiones', component: PensionesComponent, canActivate: []},
+    {path: 'user', component: UserComponent, canActivate:[authGuard]},
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
