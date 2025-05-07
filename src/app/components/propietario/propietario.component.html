@@ -1,4 +1,27 @@
 <div id="hero">
+  <div class="propietario-panel">
+    <h2>Perfil del Propietario</h2>
+    <div id="foto-perfil">
+      <img src="/assets/foto-propietario.jpg" alt="">
+    </div>
+    <div class="datos-personales">
+      <h3>Datos Personales</h3>
+      <p><strong>Nombre:</strong> Carlos</p>
+      <p><strong>Apellido:</strong> Ramírez</p>
+      <p><strong>Teléfono:</strong> 300 123 4567</p>
+    </div>
+  
+    <div class="estadisticas">
+      <h3>Estadísticas</h3>
+      <ul>
+        <li><strong>Pensiones activas:</strong> 6</li>
+        <li><strong>Tiempo usando la app:</strong> 1 año y 4 meses</li>
+        <li><strong>Reservas este mes:</strong> 12</li>
+      </ul>
+    </div>
+  </div>
+  <h4 id="h4-mis-pensiones">Mis pensiones</h4>
+  
     <section id="pensiones">
         <div class="pension" *ngFor="let pension of pensiones">
             <h2 class="id-pension">{{pension.getId()}}</h2>
