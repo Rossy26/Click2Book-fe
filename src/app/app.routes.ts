@@ -6,6 +6,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { PensionesComponent } from './components/pensiones/pensiones.component';
 import { UserComponent } from './components/user/user.component';
 import { authGuard } from './guards/auth.guard';
+import { PropietarioComponent } from './components/propietario/propietario.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: 'registro', component: RegistroComponent, canActivate: []},
     {path: 'pensiones', component: PensionesComponent, canActivate: []},
     {path: 'user', component: UserComponent, canActivate:[authGuard]},
+    {path: 'propietario', component: PropietarioComponent, canActivate: []},
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

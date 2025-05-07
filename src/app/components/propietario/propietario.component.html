@@ -1,1 +1,22 @@
-<p>propietario works!</p>
+<div id="hero">
+    <section id="pensiones">
+        <div class="pension" *ngFor="let pension of pensiones">
+            <h2 class="id-pension">{{pension.getId()}}</h2>
+            <h2 class="ambiente-familiar" *ngIf="pension.getambienteFamiliar()">Ambiente familiar</h2>
+            <h2 class="direccion">{{pension.getDireccion()}}</h2>
+            <h2 class="tipo">{{pension.getTipo()}}</h2>
+        </div>
+    </section>
+  
+    <div id="paginacion">
+      <div><a href="#" class="pag-prev"><i class="bi bi-arrow-left-short"></i></a></div>
+      <div class="pagina-numeros">
+        <span>1</span>
+        <span class="pagina-activa">2</span>
+        <span>3</span>
+        <span>...</span>
+        <span>10</span>
+      </div>
+      <div><a href="#" class="pag-sig"><i class="bi bi-arrow-right-short"></i></a></div>
+    </div>
+</div> 
