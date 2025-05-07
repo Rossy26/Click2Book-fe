@@ -24,8 +24,17 @@
       <div class="form-group">
         <div>
           <i class="bi bi-calendar2-date"></i>
-          <input type="date" name="fechaNacimiento" [(ngModel)]="fechaNacimiento"required />
+          <input
+            [type]="fechaInputType"
+            name="fechaNacimiento"
+            [(ngModel)]="fechaNacimiento"
+            placeholder="Fecha de nacimiento"
+            (focus)="cambiarTipo('date')"
+            (blur)="restaurarTipo()"
+            required
+          />
         </div>
+        
         <div>
           <i class="bi bi-envelope-at"></i>
           <input type="email" name="correo" [(ngModel)]="correo" placeholder="Correo" required />

@@ -19,7 +19,16 @@ export class RegistroComponent {
   contrasena: string = '';
   confirmarContrasena: string = '';
   rol: string = '';
+  fechaInputType: string = 'text';
   constructor(private registroService: RegistroService, private router: Router) {}
+  cambiarTipo(tipo: string){
+    this.fechaInputType = tipo;
+  }
+  restaurarTipo(){
+    if(!this.fechaNacimiento) {
+      this.fechaInputType = 'text';
+    }
+  }
   register() {
     if(!this.fechaNacimiento) {
       alert('Por favor selecciona una fecha de nacimiento válida');
