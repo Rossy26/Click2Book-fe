@@ -13,17 +13,17 @@ export class PensionesComponent {
 pensiones = [
   {
     imagen: 'assets/pension-fondo.jpg',
-    tipo: 'apartaestudio',
+    tipo: 'Apartaestudio',
     precio: 450000
   },
   {
     imagen: 'assets/pension-fondo.jpg',
-    tipo: 'apartamento',
+    tipo: 'Apartamento',
     precio: 600000
   },
   {
     imagen: 'assets/pension-fondo.jpg',
-    tipo: 'casa',
+    tipo: 'Casa',
     precio: 750000
   }
 ];
