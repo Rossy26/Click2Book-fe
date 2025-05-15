@@ -18,7 +18,7 @@ export class RegistroComponent {
   correo: string = '';
   contrasena: string = '';
   confirmarContrasena: string = '';
-  rol: string = '';
+  rol: string = 'Estudiante';
   fechaInputType: string = 'text';
   constructor(private registroService: RegistroService, private router: Router) {}
   cambiarTipo(tipo: string){
