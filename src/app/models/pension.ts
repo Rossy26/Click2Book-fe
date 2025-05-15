@@ -3,12 +3,14 @@ export class Pension {
     private ambienteFamiliar: boolean;
     private direccion: string;
     private tipo: string;
-  
-    public constructor(id: number, ambienteFamiliar: boolean, direccion: string, tipo: string) {
+    private descripcion: string;
+
+    public constructor(id: number, ambienteFamiliar: boolean, direccion: string, tipo: string, descripcion: string) {
       this.id = id;
       this.ambienteFamiliar = ambienteFamiliar;
       this.direccion = direccion;
       this.tipo = tipo;
+      this.descripcion = descripcion;
     }
   
     public getId(): number {
@@ -25,6 +27,14 @@ export class Pension {
   
     public getTipo(): string {
       return this.tipo;
+    }
+
+    public getDescripcion(): string {
+      return this.descripcion;
+    }
+
+    public setDescripcion(descripcion: string): void {
+      this.descripcion = descripcion;
     }
   
     public setId(id: number) : void {
