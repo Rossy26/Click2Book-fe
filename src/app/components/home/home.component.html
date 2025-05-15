@@ -1,45 +1,53 @@
 <main>
-    <section class="hero">
-      <h1>Tu hogar ideal por temporada, sin complicaciones</h1>
-      <p>Encuentra, reserva y disfruta con total facilidad</p>
-      <button id="btn-registro" routerLink="/registro">Regístrate gratis</button>
-  
-      <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a></p>
-    </section>
-  
-    <section class="top-rated">
-      <h2>Mejores Calificadas</h2>
-      <div class="pension-list"></div>
-    </section>
-  
-    <section class="motivos">
-      <h3>Más motivos para unirse</h3>
-      <div class="motivo">
-        <p><strong>Encuentra alojamiento sin complicaciones</strong><br />
-          Olvídate de las búsquedas interminables y encuentra el espacio ideal en minutos.
-        </p>
-      </div>
-      <div class="motivo">
-        <p><strong>Reservas 100% online, seguras y rápidas</strong><br />
-          Todo el proceso es digital, transparente y eficiente.
-        </p>
-      </div>
-      <div class="motivo">
-        <p><strong>Pensado para estudiantes y trabajadores foráneos</strong><br />
-          Si vienes a Santa Marta por estudios o trabajo, nuestra plataforma te conecta con arrendadores confiables.
-        </p>
-      </div>
-      <div class="motivo">
-        <p><strong>Conexión directa con arrendadores</strong><br />
-          Evita comisiones excesivas y conoce los términos del arriendo de antemano.
-        </p>
-      </div>
-    </section>
-  
-    <section class="faq">
-      <h4>Preguntas Frecuentes</h4>
-    </section>
-  </main>
-  
+  <!-- Hero Section -->
+  <section class="hero text-center py-5 bg-cover" style="background-image: url('img/hero-bg.jpg');">
+    <div class="container text-white">
+      <h1 class="display-4 font-weight-bold">Encuentra tu hogar ideal</h1>
+      <p class="lead">Rápido, seguro y sin complicaciones</p>
+      <a href="/registro" class="btn btn-primary btn-lg mt-3">Regístrate Gratis</a>
+      <p class="mt-2">¿Ya tienes cuenta? <a href="/login" class="text-light"><u>Inicia sesión</u></a></p>
+    </div>
+  </section>
 
-  
+  <!-- Mejores Calificadas -->
+  <section class="top-rated py-5 bg-light text-center">
+    <div class="container">
+      <h2 class="mb-4">Pensiones destacadas</h2>
+      <div class="row pension-list">
+        <!-- Aquí irían las tarjetas de pensiones dinámicamente -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow">
+            <img src="img/pension1.jpg" class="card-img-top" alt="Pensión">
+            <div class="card-body">
+              <h5 class="card-title">Pensión Central</h5>
+              <p class="card-text">Barrio Centro · ★★★★☆</p>
+            </div>
+          </div>
+        </div>
+        <!-- Repetir más tarjetas -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios Rápidos -->
+  <section class="benefits py-5 text-center bg-benefits">
+  <div class="container">
+    <h3 class="benefits-title">¿Por qué elegirnos?</h3>
+    <ul class="benefits-list">
+      <li>Búsqueda rápida y sencilla</li>
+      <li>Reservas 100% seguras</li>
+      <li>Ideal para estudiantes</li>
+      <li>Trato directo con arrendadores</li>
+    </ul>
+  </div>
+</section>
+
+
+  <!-- Preguntas Frecuentes -->
+  <section class="faq bg-light py-5 text-center">
+    <div class="container">
+      <h4>¿Tienes dudas?</h4>
+      <p class="mb-0">Explora nuestras <a href="/faq">preguntas frecuentes</a></p>
+    </div>
+  </section>
+</main>
