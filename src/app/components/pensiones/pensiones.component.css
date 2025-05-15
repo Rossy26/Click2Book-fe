@@ -143,70 +143,85 @@ main {
     width: 100%;
 }
 #pensiones {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 50px;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 24px;
+  padding: 20px;
 }
 
-.pension {
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    background: #e0dad5;
-    transition: transform 0.3s ease-in-out;box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 350px;
-    
+.pension-card {
+  background-color: #e7dfd9; /* beige claro */
+  border-radius: 16px;
+  padding: 20px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+  margin: 10px auto;
 }
 
-.pension:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+.pension-image-container {
+  width: 230px;
+  height: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 16px;
+  display: flex;
 }
 
-.div-pension {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: center;
-    width: 100%;
+.pension-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.pension a {
-    display: inline-flex;
+.flecha {
+  position: absolute;
+  top: 50%;
+  font-size: 20px;
+  color: #7c6f67;
+  cursor: pointer;
+  transform: translateY(-50%);
+  background-color: #f2eeebaa;
+  padding: 4px;
+  border-radius: 50%;
+  z-index: 1;
 }
 
-.div-pension i, .iconos i{
-    color: #6f6158;
-    transition: color 0.3s ease-in-out;
-    font-size: 26px;
+.pension-tipo {
+  font-size: 18px;
+  font-weight: 500;
+  color: #5e524a;
+  margin-bottom: 8px;
+  text-align: center;
 }
 
-.datos p {
-    color: #6f6158;
+.pension-precio{
+  font-size: 16px;
+  color: #7c6f67;
+  margin-bottom: 12px;
+}
+.pension-iconos i {
+  color: #7c6f67;
+  font-size: 18px;
+  transition: color 0.2s ease;
+  gap: 20px;
+  cursor: pointer;
 }
 
-.div-pension i:hover, .iconos i:hover {
-    transform: scale(1.2);
+.pension-iconos {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
-.imagen-pension {
-    width: 90%;
-    height: 90%;
-    border-radius: 12px;
-    object-fit: cover;
-    cursor: pointer;
-}
-
-.iconos {
-    display: flex;
-    justify-content: space-around;
-    gap: 30px;
-    font-size: 20px;
+.pension-iconos i:hover {
+  color: #5e524a;
 }
 
 #paginacion {
