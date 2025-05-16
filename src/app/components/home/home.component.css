@@ -2,8 +2,7 @@
 .hero {
     text-align: center;
     padding: 60px 20px;
-    color: #6f6158;
-    background-color: #fcf9f6;
+    color: #ffffff;
 }
 
 .hero h1 {
@@ -18,12 +17,16 @@
 }
 
 .hero a {
-    color: #6f6158;
+    font-weight:bold;
+    color: #f1eeed;
     text-decoration: underline;
+}
+.hero a:hover{
+    color: #5D4037;
 }
 
 #btn-registro {
-    background-color: #b8a492;
+    background-color: rgba(255, 255, 255, 0.8);
     color: #000;
     padding: 12px 24px;
     font-size: 16px;
@@ -36,16 +39,16 @@
 }
 
 #btn-registro:hover {
-    background-color: #6f6158;
-    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #5D4037;
 }
 
 /* ===== Top Rated Section ===== */
 .top-rated {
     padding: 60px 20px;
     text-align: center;
-    color: #6f6158;
-    background-color: #f9f4f0;
+    color: #5D4037;
+    background-color: rgba(249, 244, 240, 0.8);
 }
 
 .top-rated h2 {
@@ -73,7 +76,7 @@
 .motivos {
     padding: 60px 20px;
     text-align: center;
-    color: #6f6158;
+    color: #5D4037;
     background-color: #fff;
 }
 
@@ -84,12 +87,12 @@
 }
 
 .motivo {
-    background-color: #6f6158;
+    background-color: rgba(249, 244, 240, 0.8);
     padding: 20px 30px;
     margin: 15px auto;
     width: 85%;
     border-radius: 10px;
-    color: #fcffff;
+    color: #5D4037;
     font-size: 16px;
     line-height: 1.6;
 }
@@ -98,8 +101,8 @@
 .faq {
     padding: 60px 20px;
     text-align: center;
-    background-color: #f9f4f0;
-    color: #6f6158;
+    background-color: rgba(249, 244, 240, 0.8);
+    color: #5D4037;
 }
 
 .faq h4 {
@@ -109,7 +112,7 @@
 }
 
 .faq a {
-    color: #6f6158;
+    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -135,8 +138,8 @@
 }
 /* ===== Sección Beneficios Mejorada ===== */
 .benefits {
-    background-color: #fcf9f6;
-    color: #6f6158;
+    background-color: rgba(249, 244, 240, 0.8);;
+    color: #ffffff;
     padding: 60px 20px;
     text-align: center;
     font-family: 'Merriweather', serif;
@@ -166,7 +169,7 @@
     border-bottom: none;
 }
 main {
-    background-image: url('/public/assets/hooome.jpg');
+    background-image: url('/assets/hooome.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -183,4 +186,12 @@ main {
     top: 0; left: 0; right: 0; bottom: 0;
     background-color: rgba(111, 97, 88, 0.6); 
     z-index: -1;
+}
+section {
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+section {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px); /* Safari support */
 }
