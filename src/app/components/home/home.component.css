@@ -168,11 +168,8 @@
 .benefits-list li:last-child {
     border-bottom: none;
 }
-<<<<<<< HEAD
-main {
-=======
-#todo {
->>>>>>> 6e1da25e344c5a7adff1f6707612f34a723a89b1
+
+#container {
     background-image: url('/assets/hooome.jpg');
     background-size: cover;
     background-position: center;

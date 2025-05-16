@@ -25,7 +25,7 @@
     <section id="pensiones">
         <div class="pension" *ngFor="let pension of pensiones">
             <h2 class="id-pension">{{pension.getId()}}</h2>
-            <h2 class="ambiente-familiar" *ngIf="pension.getambienteFamiliar()">Ambiente familiar</h2>
+            <h2 class="ambiente-familiar" *ngIf="pension.getEsAmbienteFamiliar()">Ambiente familiar</h2>
             <h2 class="direccion">{{pension.getDireccion()}}</h2>
             <h2 class="tipo">{{pension.getTipo()}}</h2>
         </div>
