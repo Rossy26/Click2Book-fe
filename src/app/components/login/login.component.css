@@ -46,6 +46,11 @@ h1, p, a {
     font-size: 24px;
     border-radius: 7%;
 }
+#registro {
+    color: #6f6158;
+    text-decoration: underline;
+    font-weight: bold;
+}
 
 #btn-login {
     margin: 30px;

@@ -43,7 +43,7 @@
     color: #5D4037;
 }
 
-/* ===== Top Rated Section ===== */
+
 .top-rated {
     padding: 60px 20px;
     text-align: center;
@@ -72,7 +72,7 @@
     max-width: 300px;
 }
 
-/* ===== Motivos Section ===== */
+
 .motivos {
     padding: 60px 20px;
     text-align: center;
@@ -97,7 +97,7 @@
     line-height: 1.6;
 }
 
-/* ===== FAQ Section ===== */
+
 .faq {
     padding: 60px 20px;
     text-align: center;
@@ -116,7 +116,6 @@
     text-decoration: underline;
 }
 
-/* ===== Responsive Adjustments ===== */
 @media (max-width: 768px) {
     .pension-list {
         flex-direction: column;
@@ -136,7 +135,7 @@
     }
     
 }
-/* ===== Sección Beneficios Mejorada ===== */
+
 .benefits {
     background-color: rgba(249, 244, 240, 0.8);;
     color: #ffffff;
@@ -168,11 +167,9 @@
 .benefits-list li:last-child {
     border-bottom: none;
 }
-<<<<<<< HEAD
-main {
-=======
-#todo {
->>>>>>> 6e1da25e344c5a7adff1f6707612f34a723a89b1
+
+
+#container {
     background-image: url('/assets/hooome.jpg');
     background-size: cover;
     background-position: center;
@@ -197,5 +194,5 @@ section {
 }
 section {
     backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px); /* Safari support */
+    -webkit-backdrop-filter: blur(3px); 
 }
