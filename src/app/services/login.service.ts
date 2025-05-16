@@ -11,7 +11,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
   
   login(email: string, password: string): Observable<any> {
-    return this.http.post(environment.apiUrl + "login/", {email, password});
+    return this.http.post(environment.apiUrl + "login", {email, password});
   }
 
   isLoggedIn() : Boolean {

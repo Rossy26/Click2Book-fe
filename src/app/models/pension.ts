@@ -1,22 +1,26 @@
 export class Pension {
     private id: number;
-    private ambienteFamiliar: boolean;
+    private esAmbienteFamiliar: boolean;
+    private esCupoCompleto: boolean;
     private direccion: string;
     private tipo: string;
-  
-    public constructor(id: number, ambienteFamiliar: boolean, direccion: string, tipo: string) {
+    private descripcion: string;
+
+    public constructor(id: number, esAmbienteFamiliar: boolean, esCupoCompleto: boolean, direccion: string, tipo: string, descripcion: string) {
       this.id = id;
-      this.ambienteFamiliar = ambienteFamiliar;
+      this.esAmbienteFamiliar = esAmbienteFamiliar;
+      this.esCupoCompleto = esCupoCompleto;
       this.direccion = direccion;
       this.tipo = tipo;
+      this.descripcion = descripcion;
     }
   
     public getId(): number {
       return this.id;
     }
   
-    public getambienteFamiliar(): boolean {
-      return this.ambienteFamiliar;
+    public getEsAmbienteFamiliar(): boolean {
+      return this.esAmbienteFamiliar;
     }
   
     public getDireccion(): string {
@@ -26,13 +30,21 @@ export class Pension {
     public getTipo(): string {
       return this.tipo;
     }
+
+    public getDescripcion(): string {
+      return this.descripcion;
+    }
+
+    public setDescripcion(descripcion: string): void {
+      this.descripcion = descripcion;
+    }
   
     public setId(id: number) : void {
       this.id = id;
     }
   
-    public setAmbienteFamiliar(ambienteFamiliar: boolean) : void {
-      this.ambienteFamiliar = ambienteFamiliar;
+    public setEsAmbienteFamiliar(esAmbienteFamiliar: boolean) : void {
+      this.esAmbienteFamiliar = esAmbienteFamiliar;
     }
   
     public setDireccion(direccion: string) : void {
@@ -41,5 +53,13 @@ export class Pension {
   
     public setTipo(tipo: string) : void {
       this.tipo = tipo;
+    }
+
+    public getEscupoCompleto(): boolean {
+      return this.esCupoCompleto;
+    }
+
+    public setEscupoCompleto(esCupoCompleto: boolean): void {
+      this.esCupoCompleto =  esCupoCompleto;
     }
 }
