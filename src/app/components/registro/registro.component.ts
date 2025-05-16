@@ -18,7 +18,7 @@ export class RegistroComponent {
   correo: string = '';
   contrasena: string = '';
   confirmarContrasena: string = '';
-  rol: string = 'Estudiante';
+  rol: number = 1;
   fechaInputType: string = 'text';
   constructor(private registroService: RegistroService, private router: Router) {}
   cambiarTipo(tipo: string){
@@ -40,15 +40,17 @@ export class RegistroComponent {
     }
 
    this.registroService.register(this.nombre, this.apellido, this.correo, this.contrasena, 
-    this.confirmarContrasena, this.fechaNacimiento, this.rol).subscribe(response => {
+    this.confirmarContrasena, this.fechaNacimiento, this.rol).subscribe({
+      next: (response) => {
       localStorage.setItem("tokenAcceso", response.access_token);
       localStorage.setItem("idUsuario", response.user_id);
       localStorage.setItem("nombreUsuario", response.user_name);
-      localStorage.setItem("rolUsuario", response.user_role);
+      localStorage.setItem("rolUsuario", response.rol);
       localStorage.setItem("emailUsuario", response.user_email);
       this.router.navigate(["/pensiones"]);
-      return;
-    });
-    alert('Error al momento de registrarse');
+    }, error: (error) => {
+      alert('Error al momento de registrarse ' + error);
+    }
+  });
   }
 }

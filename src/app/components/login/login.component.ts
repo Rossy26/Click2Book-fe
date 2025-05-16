@@ -25,7 +25,7 @@ export class LoginComponent {
       localStorage.setItem("tokenAcceso", response.access_token);
       localStorage.setItem("idUsuario", response.user_id);
       localStorage.setItem("nombreUsuario", response.user_name);
-      localStorage.setItem("rolUsuario", response.user_role);
+      localStorage.setItem("rolUsuario", response.rol);
       localStorage.setItem("emailUsuario", response.user_email);
       this.router.navigate(["/pensiones"]);
       

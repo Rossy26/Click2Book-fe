@@ -29,8 +29,8 @@
             name="fechaNacimiento"
             [(ngModel)]="fechaNacimiento"
             placeholder="Fecha de nacimiento"
-            (click)="cambiarTipo('date')"
-            (blur)="restaurarTipo()"
+            (mouseenter)="cambiarTipo('date')"
+            (mouseleave)="restaurarTipo()"
             required
           />
         </div>
@@ -53,9 +53,9 @@
       </div>
       <div class="Tipo1">
         <select name="tipo" [(ngModel)]="rol" id="">
-            <option value="Estudiante" selected>Estudiante</option>
-            <option value="Arrendador">Arrendador</option>
-            <option value="Administrador">Administrador</option>
+            <option value=2 selected>Estudiante</option>
+            <option value=3>Arrendador</option>
+            <option value=1>Administrador</option>
         </select>
       </div>
       <div id="botones">
