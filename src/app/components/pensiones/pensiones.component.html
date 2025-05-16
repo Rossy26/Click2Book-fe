@@ -49,27 +49,27 @@
       </form>
     </section>
   
-<section id="pensiones">
-  <div *ngFor="let pension of pensiones" class="pension-card">
-    <div class="pension-image-container">
-      <i class="bi bi-arrow-left-short flecha izquierda"></i>
-      <img [src]="pension.imagen" alt="Imagen de pensión" class="pension-image" />
-      <i class="bi bi-arrow-right-short flecha derecha"></i>
-    </div>
-    <h3 class="pension-tipo">{{ pension.tipo }}</h3>
-    <p class="pension-precio">${{ pension.precio }}</p>
-    <div class="pension-iconos">
-      <i class="bi bi-calendar" title="Agenda tu reserva"> </i>
-      <i class="bi bi-geo-alt" title="Ubicación"></i>
-      <i class="bi bi-bookmark" title="Guardados"></i>
-      <i class="bi bi-info-circle" title="Favoritos"></i>
-      <i class="bi bi-star" title="Valoración"></i>
-    </div>
-  </div>
-</section>
+  <section id="pensiones">
+    <div *ngFor="let pension of pensiones" class="pension-card">
+      <div class="pension-image-container">
+        <i class="bi bi-arrow-left-short flecha izquierda"></i>
+        <img [src]="pension.imagen" alt="Imagen de pensión" class="pension-image" />
+        <i class="bi bi-arrow-right-short flecha derecha"></i>
+      </div>
+      <h3 class="pension-tipo">{{ pension.tipo }}</h3>
+      <p class="pension-precio">${{ pension.precio }}</p>
+      <div class="pension-iconos">
+        <i class="bi bi-calendar" title="Agenda tu reserva"> </i>
+        <i class="bi bi-geo-alt" title="Ubicación"></i>
+        <i class="bi bi-bookmark" title="Guardados"></i>
+        <i class="bi bi-info-circle" title="Favoritos"></i>
+        <i class="bi bi-star" title="Valoración"></i>
+      </div>
+   </div>
+ </section>
 
-    <div id="paginacion">
-      <div><a href="#" class="pag-prev"><i class="bi bi-arrow-left-short"></i></a></div>
+  <div id="paginacion">
+    <div><a href="#" class="pag-prev"><i class="bi bi-arrow-left-short"></i></a></div>
       <div class="pagina-numeros">
         <span>1</span>
         <span class="pagina-activa">2</span>

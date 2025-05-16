@@ -17,7 +17,6 @@ nav a i, nav a p {
     font-size: 24px;
 }
 
-/* header */
 nav {
     display: flex;
     justify-content: space-between;
@@ -44,6 +43,20 @@ nav div a {
     width: 40px;
     margin-right: 10px;
 }
+#hero {
+  background: linear-gradient(270deg, #e8dfd9, #d3c0b4, #c4a99b);
+  background-size: 600% 600%;
+  animation: gradientFlow 20s ease infinite;
+  height: 100vh;
+  margin: 0;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 
 
 
