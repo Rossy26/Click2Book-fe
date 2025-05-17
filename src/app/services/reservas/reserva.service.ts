@@ -15,15 +15,21 @@ export class ReservaService {
   }
 
   public updateReserva(reserva: Reserva): Observable<any> {
-    return this.http.put(environment.apiUrl + `reservas/${reserva.getId()}`, {reserva});
+    return this.http.put(environment.apiUrl + `reservas/${reserva.id}`, {reserva});
   }
 
   public getReservas(): Observable<any> {
     return this.http.get(environment.apiUrl + "reservas");
   }
+  
   public getReserva(id: number): Observable<any> {
     return this.http.get(environment.apiUrl + `reservas/${id}`);
   }
+  
+  public getByUser(idUsuario: number): Observable<any> {
+    return this.http.get(environment.apiUrl + `/usuarios/${idUsuario}/reservas`);
+  }
+
   public deleteReserva(id: number): Observable<any> {
     return this.http.delete(environment.apiUrl + `pensiones/${id}`);
   }

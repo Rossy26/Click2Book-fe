@@ -29,7 +29,7 @@ export class PensionService {
   }
   
   public updatePension(pension: Pension): Observable<any> {
-    return this.http.put(environment.apiUrl + `propiedades/${pension.getId()}`, {pension});
+    return this.http.put(environment.apiUrl + `propiedades/${pension.id}`, {pension});
   }
 
   public deletePension(id: number): Observable<any>  {

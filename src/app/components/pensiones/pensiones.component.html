@@ -53,13 +53,13 @@
     <div *ngFor="let pension of pensiones" class="pension-card">
       <div class="pension-image-container">
         <i class="bi bi-arrow-left-short flecha izquierda"></i>
-        <img [src]="pension.imagen" alt="Imagen de pensión" class="pension-image" />
+        <img [src]="imagen" alt="Imagen de pensión" class="pension-image" />
         <i class="bi bi-arrow-right-short flecha derecha"></i>
       </div>
-      <h3 class="pension-tipo">{{ pension.tipo }}</h3>
-      <p class="pension-precio">${{ pension.precio }}</p>
+      <h3 class="pension-tipo">{{ pension.descripcion}}</h3>
+      <p class="pension-precio">{{ pension.direccion }}</p>
       <div class="pension-iconos">
-        <i class="bi bi-calendar" title="Agenda tu reserva"> </i>
+        <i (click)="abrirModal(pension.id)" class="bi bi-calendar" title="Agenda tu reserva"> </i>
         <i class="bi bi-geo-alt" title="Ubicación"></i>
         <i class="bi bi-bookmark" title="Guardados"></i>
         <i class="bi bi-info-circle" title="Favoritos"></i>
@@ -67,7 +67,26 @@
       </div>
    </div>
  </section>
+  <div class="modal" [class.show]="mostrarModal">
+    <div class="modal-content">
+      <h3>Reservar cuartos</h3>
 
+      <label>Fecha inicio:</label>
+      <input type="date" [(ngModel)]="fechaInicio">
+
+      <label>Fecha fin:</label>
+      <input type="date" [(ngModel)]="fechaFin">
+
+      <div *ngIf="cuartos.length > 0">
+        <h4>Cuartos disponibles:</h4>
+        <ul>
+          <li *ngFor="let cuarto of cuartos">{{ cuarto.getDescripcion() }} <button (click)="reservar(cuarto.getId())" type="submit">Reservar</button> </li>
+        </ul>
+      </div>
+
+      <button (click)="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
   <div id="paginacion">
     <div><a href="#" class="pag-prev"><i class="bi bi-arrow-left-short"></i></a></div>
       <div class="pagina-numeros">

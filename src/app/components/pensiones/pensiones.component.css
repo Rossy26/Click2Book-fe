@@ -5,44 +5,7 @@
     justify-content: space-between;
     min-height: 100%;
 }
-a {
-    text-decoration: None;
-}
 
-a:hover {
-    text-decoration: underline;
-}
-
-nav a i, nav a p {
-    font-size: 24px;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: #6f6158;
-    margin: 0;
-    align-items: center;
-}
-
-nav div a {
-    display: flex;
-    gap: 20px;
-}
-
-.logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-}
-
-.logo img {
-    width: 40px;
-    margin-right: 10px;
-}
 #hero {
   background: linear-gradient(270deg, #e8dfd9, #d3c0b4, #c4a99b);
   background-size: 600% 600%;
@@ -56,9 +19,6 @@ nav div a {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-
-
 
 nav li {
     display: inline;
@@ -156,6 +116,7 @@ main {
     margin: 0;
     width: 100%;
 }
+
 #pensiones {
   display: flex;
   flex-wrap: wrap;
@@ -277,3 +238,28 @@ main {
     border-radius: 5px;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Oculto por defecto */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal.show {
+  display: flex; /* Se muestra como flex para centrar */
+  animation: fadeIn 0.3s ease-in-out;
+}

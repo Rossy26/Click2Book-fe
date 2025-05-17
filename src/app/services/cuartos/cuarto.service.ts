@@ -17,6 +17,10 @@ export class CuartoService {
   public getCuartos(): Observable<any> {
     return this.http.get(environment.apiUrl + "cuartos");
   }
+  
+  public filterByPropiedad(idPropiedad: number): Observable<any> {
+    return this.http.get(environment.apiUrl + `propiedades/${idPropiedad}/cuartos`);
+  }
 
   public getCuarto(id: number): Observable<any> {
     return this.http.get(environment.apiUrl + `cuartos/${id}`);
@@ -27,7 +31,7 @@ export class CuartoService {
   }
 
   public updateCuarto(cuarto: Cuarto): Observable<any> {
-    return this.http.put(environment.apiUrl + `pensiones/${cuarto.getId()}`, {cuarto});
+    return this.http.put(environment.apiUrl + `cuartos/${cuarto.getId()}`, {cuarto});
   }
 
 }
