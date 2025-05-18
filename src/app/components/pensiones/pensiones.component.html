@@ -83,7 +83,7 @@
       <div *ngIf="cuartos.length > 0">
         <h4 id="cuartos-dispnibles">Cuartos disponibles:</h4>
         <ul>
-          <li *ngFor="let cuarto of cuartos">{{ cuarto.getDescripcion() }} <button (click)="reservar(cuarto.getId())" type="submit">Reservar</button> </li>
+          <li *ngFor="let cuarto of cuartos">{{ cuarto.descripcion }} <button (click)="reservar(cuarto.id)" type="submit">Reservar</button> </li>
         </ul>
       </div>
 

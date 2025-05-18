@@ -1,6 +1,6 @@
 export class Ciudad {
-    private id: number;
-    private nombre: string;
+    id: number;
+    nombre: string;
 
     public constructor(id: number, nombre:string) {
         this.id = id;
