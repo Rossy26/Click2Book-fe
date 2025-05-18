@@ -1,10 +1,17 @@
 <div class="container">
-    <div class="data">
-
-    </div>
+    <div class="title">
+            <h1>Estas son tus reservas</h1>
+        </div>
     <div class="reservas">
         <div class="reserva" *ngFor="let reserva of reservas">
-            <p>reserva con id {{reserva.id}}</p>
+            <h4>Reserva</h4>
+            <p>cuarto: {{reserva.cuarto_id}}</p>
+            <p>tipo de reserva: {{reserva.tiporeserva_id}}</p>
+            <p>desde: {{reserva.inicio}}</p>
+            <p>hasta: {{reserva.fin}}</p>
+            <div class="buttons">
+                <i class="bi bi-trash" (click)="borrarReserva(reserva.id)"></i>
+            </div>
         </div>
     </div>
 </div>

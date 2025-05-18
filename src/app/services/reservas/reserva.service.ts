@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Reserva } from '../../models/reserva';
 import { environment } from '../../../environments/environment';
-import { Cuarto } from '../../models/cuarto';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,10 +26,10 @@ export class ReservaService {
   }
   
   public getByUser(idUsuario: number): Observable<any> {
-    return this.http.get(environment.apiUrl + `/usuarios/${idUsuario}/reservas`);
+    return this.http.get(environment.apiUrl + `users/${idUsuario}/reservas`);
   }
 
   public deleteReserva(id: number): Observable<any> {
-    return this.http.delete(environment.apiUrl + `pensiones/${id}`);
+    return this.http.delete(environment.apiUrl + `reservas/${id}`);
   }
 } 
