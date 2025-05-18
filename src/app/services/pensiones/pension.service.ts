@@ -17,7 +17,7 @@ export class PensionService {
   }
 
   public filterByPropietario(idPropietario: number): Observable<any> {
-    return this.http.get(environment.apiUrl + `propietario/propiedades/${idPropietario}`);
+    return this.http.get(environment.apiUrl + `propietarios/${idPropietario}/propiedades`);
   }
 
   public getPensiones(): Observable<any> {

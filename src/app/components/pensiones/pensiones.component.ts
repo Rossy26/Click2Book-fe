@@ -27,6 +27,7 @@ export class PensionesComponent {
   userName: string = '';
   fechaInicio: string = '';
   fechaFin: string = '';
+  cantidadPensionados: number = 0;
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('nombreUsuario') || 'Visitante';
