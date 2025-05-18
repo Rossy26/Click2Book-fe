@@ -31,7 +31,7 @@ export class CuartoService {
   }
 
   public updateCuarto(cuarto: Cuarto): Observable<any> {
-    return this.http.put(environment.apiUrl + `cuartos/${cuarto.getId()}`, {cuarto});
+    return this.http.put(environment.apiUrl + `cuartos/${cuarto.id}`, {cuarto});
   }
 
 }
