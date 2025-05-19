@@ -35,4 +35,10 @@ export class PensionService {
   public deletePension(id: number): Observable<any>  {
     return this.http.delete(environment.apiUrl + `propiedades/${id}`);
   }
+
+  public filtrarPensiones(tipoSeleccionado: string, barrioSeleccionado: string, precioMinimo: number, precioMaximo: number, cupoCompleto:boolean, ambienteFamiliar: boolean, individual: boolean, aire: boolean): Observable<any> {
+    return this.http.get(environment.apiUrl +  `propiedades/${tipoSeleccionado}/${barrioSeleccionado}/${precioMinimo}/${precioMaximo}/${cupoCompleto}/${ambienteFamiliar}/${individual}/${aire}`);
+  }
 }
+
+

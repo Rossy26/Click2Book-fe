@@ -1,4 +1,4 @@
-
+/* general */
 #hero {
     display: flex;
     flex-direction: column;
@@ -31,103 +31,80 @@ nav a:hover {
 }
 
 #filters {
-  background-color: #f5eee7;
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  margin-bottom: 2rem;
-  max-width: 1200px;
-  margin-inline: auto;
+    padding: 50px 50px 0 50px;
+    flex-direction: column;
+    display: flex;
+    transition: 0.3s ease-in-out;
 }
 
 #filter-inputs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 10px;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.filter-select select {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #b69c85;
-  border-radius: 8px;
-  background-color: #d3bca9;
-  font-size: 1rem;
-  color: #4b3e34;
-  width: 180px;
-  outline: none;
-  transition: 0.3s ease;
+#filter-inputs select, #filter-inputs input {
+    background-color:#b8a492;
+    color: #6f6158;
+    border-radius: 10%;
+    font-size: 18px;
 }
 
-.filter-select select:focus {
-  border-color: #8d7661;
-  box-shadow: 0 0 5px rgba(141, 118, 97, 0.4);
+#filter-inputs option:hover {
+    color:#1a2015;
+    background-color: #f5f5f5;
+
 }
 
-
-.filter-number input {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #b69c85;
-  border-radius: 8px;
-  background-color: #efe1d2;
-  font-size: 1rem;
-  color: #4b3e34;
-  width: 150px;
+.filter-number input{
+    width: 120px;
+    height: 20px;
+    padding: 0;
 }
 
 .filter-check {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.95rem;
-  color: #4b3e34;
-  background-color: #f7eee3;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  border: 1px solid #e0cdb9;
+    display: flex;
+    align-items: center;
 }
 
-.filter-check input[type="checkbox"] {
-  accent-color: #a1866f;
+.filter-check input {
+    width: 18px;
+    height: 18px;
+    background-color:#b8a492;
+    accent-color: #6f6158;
 }
 
-
+.filter-check p {
+    font-size: 18px;
+    color: #6f6158;
+}
 #filter-btn {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
+    display: flex;
+    gap: 20px;
 }
 
 #filter-btn button {
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #a1866f;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    background-color: #b8a492;
+    color: #1a2015;
 }
 
 #filter-btn button:hover {
-  background-color: #8d7661;
-  transform: scale(1.03);
+    background-color: #6f6158;
+    color: #f5f5f5;
 }
-
-#filter-btn button[type="reset"] {
-  background-color: #c3aa92;
-}
-
-#filter-btn button[type="reset"]:hover {
-  background-color: #b0957c;
-}
-
 
 main {
-  margin: 0;
-  width: 100%;
+    margin: 0;
+    width: 100%;
 }
 
 #pensiones {

@@ -17,6 +17,14 @@ import { Reserva } from '../../models/reserva';
   styleUrl: './pensiones.component.css'
 })
 export class PensionesComponent {
+  tipoSeleccionado: string = '';
+  barrioSeleccionado: string = '';
+  precioMinimo: number = 0;
+  precioMaximo: number = 0;
+  cupoCompleto: boolean = false;
+  ambienteFamiliar: boolean = false;
+  individual: boolean = false;
+  aire: boolean = false;
 
 
   constructor(private servicio: PensionService, private servcioCuarto: CuartoService, private servicioReserva: ReservaService) {}
@@ -28,6 +36,29 @@ export class PensionesComponent {
   fechaInicio: string = '';
   fechaFin: string = '';
   cantidadPensionados: number = 0;
+
+
+  aplicarFiltros() {
+    this.servicio.filtrarPensiones(this.tipoSeleccionado,
+      this.barrioSeleccionado,
+      this.precioMinimo,
+      this.precioMaximo,
+      this.cupoCompleto,
+      this.ambienteFamiliar,
+      this.individual,
+      this.aire
+    ).subscribe({
+      next: (response) => {
+        for(let pension of response) {
+          this.pensiones.push(new Pension(pension.id, pension.esambientefamiliar, pension.escupocompleto, pension.direccion, "", pension.descripcion));
+        }
+      },
+      error: (error) => {
+        alert("Hubo un error al cargar los filtros de las pensiones");
+      }
+
+    });
+  }
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('nombreUsuario') || 'Visitante';

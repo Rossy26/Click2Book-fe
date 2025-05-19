@@ -1,9 +1,9 @@
 <div id="hero">
     <section id="filters">
-      <form>
+      <form (ngSubmit)="aplicarFiltros()">
         <div id="filter-inputs">
           <div class="filter-select">
-            <select>
+            <select [(ngModel)]="tipoSeleccionado">
               <option value="">Todos</option>
               <option value="casa">Casa</option>
               <option value="apartamento">Apartamento</option>
@@ -11,7 +11,7 @@
             </select>
           </div>
           <div class="filter-select">
-            <select>
+            <select [(ngModel)]="barrioSeleccionado">
               <option value="">Todos</option>
               <option value="villa-bella">Villa Bella</option>
               <option value="villa-marbella">Villa Marbella</option>
@@ -19,25 +19,25 @@
             </select>
           </div>
           <div class="filter-number">
-            <input type="number" placeholder="$ mínimo" min="0" />
+            <input type="number" [(ngModel)]="precioMinimo" placeholder="$ mínimo" min="0" />
           </div>
           <div class="filter-number">
-            <input type="number" placeholder="$ máximo" min="0" />
+            <input type="number" [(ngModel)]="precioMaximo" placeholder="$ máximo" min="0" />
           </div>
           <div class="filter-check">
-            <input type="checkbox" id="cupoCompleto" />
+            <input type="checkbox" [(ngModel)]="cupoCompleto" id="cupoCompleto" />
             <label for="cupoCompleto">Cupo completo</label>
           </div>
           <div class="filter-check">
-            <input type="checkbox" id="ambienteFamiliar" />
+            <input type="checkbox" [(ngModel)]="ambienteFamiliar" id="ambienteFamiliar" />
             <label for="ambienteFamiliar">Ambiente familiar</label>
           </div>
           <div class="filter-check">
-            <input type="checkbox" id="individual" />
+            <input type="checkbox" [(ngModel)]="individual" id="individual" />
             <label for="individual">Individual</label>
           </div>
           <div class="filter-check">
-            <input type="checkbox" id="aire" />
+            <input type="checkbox" [(ngModel)]="aire" id="aire" />
             <label for="aire">Aire acondicionado</label>
           </div>
         </div>
