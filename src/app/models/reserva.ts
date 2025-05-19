@@ -6,8 +6,8 @@ export class Reserva {
     cuarto_id: number;
     inicio: string;
     fin: string;
-
-    public constructor(id: number, user_id: number, cuarto_id: number, inicio: string, fin: string) {
+    cantidad_pensionados: number;
+    public constructor(id: number, user_id: number, cuarto_id: number, inicio: string, fin: string, cantidad_pensionados: number) {
         this.id = id;
         // this.pago_id = 0;
         this.tiporeserva_id = 1;
@@ -15,6 +15,7 @@ export class Reserva {
         this.cuarto_id = cuarto_id;
         this.inicio = inicio;
         this.fin = fin;
+        this.cantidad_pensionados = cantidad_pensionados;
     }
 
 }

@@ -23,7 +23,7 @@ export class ReservasComponent {
     	this.reservaService.getByUser(idUsuario).subscribe({
       		next: (response) => {
         		for (let reserva of response) {
-    	      		this.reservas.push(new Reserva(reserva.id, idUsuario, reserva.cuarto_id, reserva.inicio, reserva.fin));
+    	      		this.reservas.push(new Reserva(reserva.id, idUsuario, reserva.cuarto_id, reserva.inicio, reserva.fin, reserva.cantidad_pensionados));
         		}
       		},
       		error: (error) => {

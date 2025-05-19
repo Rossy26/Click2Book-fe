@@ -85,7 +85,7 @@ export class PensionesComponent {
       return;
     }
     const idUsuario = parseInt(idUsuarioStr);
-    this.servicioReserva.createReserva(new Reserva(0, idUsuario, idCuarto, this.fechaInicio, this.fechaFin)).subscribe({
+    this.servicioReserva.createReserva(new Reserva(0, idUsuario, idCuarto, this.fechaInicio, this.fechaFin, this.cantidadPensionados)).subscribe({
       next: (response) => {
         alert('Reserva realizada con éxito');
         this.cerrarModal();
