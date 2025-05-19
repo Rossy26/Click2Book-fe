@@ -1,28 +1,23 @@
 <div id="hero">
     <section id="filters">
-      <form (ngSubmit)="aplicarFiltros()">
         <div id="filter-inputs">
           <div class="filter-select">
             <select [(ngModel)]="tipoSeleccionado">
-              <option value="">Todos</option>
-              <option value="casa">Casa</option>
-              <option value="apartamento">Apartamento</option>
-              <option value="apartaestudio">Apartaestudio</option>
+              <option value="0">Todos</option>
+              <option *ngFor="let tipo of tiposPropiedad" [value]="tipo.id">{{tipo.nombre}}</option>
             </select>
           </div>
           <div class="filter-select">
             <select [(ngModel)]="barrioSeleccionado">
-              <option value="">Todos</option>
-              <option value="villa-bella">Villa Bella</option>
-              <option value="villa-marbella">Villa Marbella</option>
-              <option value="las-malvinas">Las Malvinas</option>
+              <option value="0">Todos</option>
+              <option *ngFor="let barrio of barrios" [value]="barrio.id">{{barrio.nombre}}</option>
             </select>
           </div>
           <div class="filter-number">
             <input type="number" [(ngModel)]="precioMinimo" placeholder="$ mínimo" min="0" />
           </div>
           <div class="filter-number">
-            <input type="number" [(ngModel)]="precioMaximo" placeholder="$ máximo" min="0" />
+            <input type="number" [(ngModel)]="precioMaximo" placeholder="$ máximo" min="{{precioMinimo}}" />
           </div>
           <div class="filter-check">
             <input type="checkbox" [(ngModel)]="cupoCompleto" id="cupoCompleto" />
@@ -43,10 +38,9 @@
         </div>
   
         <div id="filter-btn">
-          <button type="submit">Buscar</button>
-          <button type="reset">Restablecer filtros</button>
+          <button type="submit" (click)="filtrarPensiones()">Buscar</button>
+          <button type="reset" (click)="restablecerFiltros()">Restablecer filtros</button>
         </div>
-      </form>
     </section>
   
   <section id="pensiones">

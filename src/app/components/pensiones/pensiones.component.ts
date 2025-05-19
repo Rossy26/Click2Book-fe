@@ -8,123 +8,148 @@ import { Cuarto } from '../../models/cuarto';
 import { CuartoService } from '../../services/cuartos/cuarto.service';
 import { ReservaService } from '../../services/reservas/reserva.service';
 import { Reserva } from '../../models/reserva';
+import { Barrio } from '../../models/barrio';
+import { TipoPropiedad } from '../../models/tipospropiedad';
+import { LocacionService } from '../../services/locaciones/locacion.service';
 
 @Component({
-  selector: 'app-pensiones',
-  imports: [RouterModule, NgFor, FormsModule, NgIf],
-  standalone: true,
-  templateUrl: './pensiones.component.html',
-  styleUrl: './pensiones.component.css'
+	selector: 'app-pensiones',
+	imports: [RouterModule, NgFor, FormsModule, NgIf],
+	standalone: true,
+	templateUrl: './pensiones.component.html',
+	styleUrl: './pensiones.component.css'
 })
 export class PensionesComponent {
-  tipoSeleccionado: string = '';
-  barrioSeleccionado: string = '';
-  precioMinimo: number = 0;
-  precioMaximo: number = 0;
-  cupoCompleto: boolean = false;
-  ambienteFamiliar: boolean = false;
-  individual: boolean = false;
-  aire: boolean = false;
+	constructor(private servicio: PensionService, private servcioCuarto: CuartoService, private servicioReserva: ReservaService, private servicioLocaciones: LocacionService) {}
+	barrios: Barrio[] = [];
+	tiposPropiedad: TipoPropiedad[] = [];
 
+	tipoSeleccionado: string = '';
+	barrioSeleccionado: string = '';
+	precioMinimo: number = 0;
+	precioMaximo: number = 0;
+	cupoCompleto: boolean = false;
+	ambienteFamiliar: boolean = false;
+	individual: boolean = false;
+	aire: boolean = false;
 
-  constructor(private servicio: PensionService, private servcioCuarto: CuartoService, private servicioReserva: ReservaService) {}
-  pensiones: Pension[] = [];
-  cuartos: Cuarto[] = [];
-  mostrarModal: boolean = false;
-  imagen = 'assets/pension-fondo.jpg';
-  userName: string = '';
-  fechaInicio: string = '';
-  fechaFin: string = '';
-  cantidadPensionados: number = 0;
+	pensiones: Pension[] = [];
+	cuartos: Cuarto[] = [];
+	mostrarModal: boolean = false;
+	imagen = 'assets/pension-fondo.jpg';
+	userName: string = '';
+	fechaInicio: string = '';
+	fechaFin: string = '';
+	cantidadPensionados: number = 0;
 
+  	ngOnInit(): void {
+		this.userName = localStorage.getItem('nombreUsuario') || 'Visitante';
+		this.servicio.getPensiones().subscribe({
+			next: (response) => {
+				for (let pension of response) {
+					this.pensiones.push(new Pension(pension.id, pension.user_id, pension.esambientefamiliar, pension.escupocompleto, pension.direccion, "", pension.descripcion, pension.barrio_id, pension.tipopropiedad_id));
+				}
+			},
+			error: (error) => {
+				alert("Hubo un error al cargar las pensiones");
+			}
+		});
 
-  aplicarFiltros() {
-    this.servicio.filtrarPensiones(this.tipoSeleccionado,
-      this.barrioSeleccionado,
-      this.precioMinimo,
-      this.precioMaximo,
-      this.cupoCompleto,
-      this.ambienteFamiliar,
-      this.individual,
-      this.aire
-    ).subscribe({
-      next: (response) => {
-        for(let pension of response) {
-          this.pensiones.push(new Pension(pension.id, pension.esambientefamiliar, pension.escupocompleto, pension.direccion, "", pension.descripcion));
-        }
-      },
-      error: (error) => {
-        alert("Hubo un error al cargar los filtros de las pensiones");
-      }
+		this.servicioLocaciones.getBarrios().subscribe({
+			next: (data) => this.barrios = data,
+			error: () => alert("Error al cargar barrios")
+		});
 
-    });
-  }
-
-  ngOnInit(): void {
-    this.userName = localStorage.getItem('nombreUsuario') || 'Visitante';
-    this.servicio.getPensiones().subscribe({
-      next: (response) => {
-        for (let pension of response) {
-          this.pensiones.push(new Pension(pension.id, pension.esambientefamiliar, pension.escupocompleto, pension.direccion, "", pension.descripcion));
-        }
-      },
-      error: (error) => {
-        alert("Hubo un error al cargar las pensiones");
-      }
-    });
-  }
+		this.servicio.getTiposPropiedad().subscribe({
+			next: (data) => this.tiposPropiedad = data,
+			error: () => alert("Error al cargar tipos de propiedad")
+		});
+  	}
   
-  buscarCuartos(idPropiedad: number) {
-    this.servcioCuarto.filterByPropiedad(idPropiedad).subscribe({
-      next: (response) => {
-        // Aquí podrías filtrar manualmente por fechas si el backend no lo hace
-        this.cuartos = response; 
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Error al buscar cuartos');
-      }
-    });
-  }
+  	buscarCuartos(idPropiedad: number) {
+		this.servcioCuarto.filterByPropiedad(idPropiedad).subscribe({
+			next: (response) => {
+				this.cuartos = response; 
+			},
+			error: (err) => {
+				console.error(err);
+				alert('Error al buscar cuartos');
+			}
+		});
+  	}
+
+  	filtrarPensiones() {
+		this.pensiones = [];
+		this.servicio.filtrarPensiones(
+			parseInt(this.tipoSeleccionado),
+			parseInt(this.barrioSeleccionado),
+			this.precioMinimo,
+			this.precioMaximo,
+			this.cupoCompleto,
+			this.ambienteFamiliar,
+			this.individual,
+			this.aire
+		).subscribe({
+      		next: (response) => {
+       			 for(let pension of response) {
+          			this.pensiones.push(new Pension(pension.id, pension.user_id, pension.esambientefamiliar, pension.escupocompleto, pension.direccion, "", pension.descripcion, pension.barrio_id, pension.tipopropiedad_id));
+        		}
+      		},
+      		error: (error) => {
+        		alert("Hubo un error al cargar las pensiones filtradas");
+      		}
+    	});
+  	}
+
+  	restablecerFiltros() {
+		this.precioMaximo = 0;
+		this.precioMinimo = 0;
+		
+		this.ambienteFamiliar = false;
+		this.cupoCompleto = false;
+		this.individual = false;
+		this.aire = false;
+  	}
+
+  	abrirModal(idPension: number) {
+		this.mostrarModal = true;
+		this.cuartos = [];
+
+		this.servcioCuarto.filterByPropiedad(idPension).subscribe({
+			next: (response) => {
+				for (let cuarto of response) {
+					this.cuartos.push(new Cuarto(cuarto.id, 0, 0, cuarto.tieneaire, cuarto.descripcion));
+				}
+			},
+			error: (error) => {
+				alert("Error al cargar los cuartos");
+			}
+		});
+	}
+
+  	cerrarModal() {
+		this.mostrarModal = false;
+		this.fechaInicio = '';
+		this.fechaFin = '';
+		this.cuartos = [];
+  	}
   
-  abrirModal(idPension: number) {
-    this.mostrarModal = true;
-    this.cuartos = [];
-
-    this.servcioCuarto.filterByPropiedad(idPension).subscribe({
-      next: (response) => {
-        for (let cuarto of response) {
-          this.cuartos.push(new Cuarto(cuarto.id, 0, 0, cuarto.tieneaire, cuarto.descripcion));
-        }
-      },
-      error: (error) => {
-        alert("Error al cargar los cuartos");
-      }
-    });
-  }
-
-  cerrarModal() {
-    this.mostrarModal = false;
-    this.fechaInicio = '';
-    this.fechaFin = '';
-    this.cuartos = [];
-  }
-  reservar(idCuarto: number) {
-    const idUsuarioStr = localStorage.getItem('idUsuario');
-    if (!idUsuarioStr) {
-      alert('No se encontró el ID del usuario. Por favor, inicia sesión.');
-      return;
-    }
-    const idUsuario = parseInt(idUsuarioStr);
-    this.servicioReserva.createReserva(new Reserva(0, idUsuario, idCuarto, this.fechaInicio, this.fechaFin, this.cantidadPensionados)).subscribe({
-      next: (response) => {
-        alert('Reserva realizada con éxito');
-        this.cerrarModal();
-      },
-      error: (error) => {
-        console.log(error);
-        alert('Error al realizar la reserva');
-      }
-    });
-  }
+  	reservar(idCuarto: number) {
+		const idUsuarioStr = localStorage.getItem('idUsuario');
+		if (!idUsuarioStr) {
+			alert('No se encontró el ID del usuario. Por favor, inicia sesión.');
+			return;
+		}
+		const idUsuario = parseInt(idUsuarioStr);
+		this.servicioReserva.createReserva(new Reserva(0, idUsuario, idCuarto, this.fechaInicio, this.fechaFin, this.cantidadPensionados)).subscribe({
+			next: (response) => {
+				alert('Reserva realizada con éxito');
+				this.cerrarModal();
+			},
+			error: (error) => {
+				console.log(error);
+				alert('Error al realizar la reserva');
+			}
+		});
+	}
 }
