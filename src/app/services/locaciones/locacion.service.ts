@@ -17,4 +17,8 @@ export class LocacionService {
   public filtrarBarriosPorCiudad(idCiudad: number): Observable<any> {
     return this.http.get(environment.apiUrl + `ciudades/${idCiudad}/barrios`);
   }
+
+  public getBarrios(): Observable<any> {
+    return this.http.get(environment.apiUrl + "barrios");
+  }
 }

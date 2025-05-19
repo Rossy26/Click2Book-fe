@@ -6,7 +6,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-user',
-  imports: [FormsModule, NgIf],
+  imports: [RouterLink, FormsModule, NgIf],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })

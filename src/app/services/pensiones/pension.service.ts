@@ -9,36 +9,62 @@ import { Pension } from '../../models/pension';
 })
 export class PensionService {
 
-  constructor(private http: HttpClient) { }
-  
+    constructor(private http: HttpClient) { }
+    
 
-  public createPension(pension: Pension): Observable<any> {
-    return this.http.post(environment.apiUrl + "propiedades", {pension});
-  }
+    public createPension(pension: Pension): Observable<any> {
+      	return this.http.post(environment.apiUrl + "propiedades", {
+        	esambientefamiliar: pension.esAmbienteFamiliar,
+        	escupocompleto: pension.esCupoCompleto,
+			direccion: pension.direccion,
+			descripcion: pension.descripcion,
+			user_id: pension.user_id,
+			tipopropiedad_id: pension.tipopropiedad_id,
+			barrio_id: pension.barrio_id
+      	});
+    }
 
-  public filterByPropietario(idPropietario: number): Observable<any> {
-    return this.http.get(environment.apiUrl + `propietarios/${idPropietario}/propiedades`);
-  }
+    public filterByPropietario(idPropietario: number): Observable<any> {
+      	return this.http.get(environment.apiUrl + `propietarios/${idPropietario}/propiedades`);
+    }
 
-  public getPensiones(): Observable<any> {
-    return this.http.get(environment.apiUrl + "propiedades");
-  }
+    public getPensiones(): Observable<any> {
+      	return this.http.get(environment.apiUrl + "propiedades");
+    }
 
-  public getPension(id: number): Observable<any>  {
-    return this.http.get(environment.apiUrl + `propiedades/${id}`);
-  }
-  
-  public updatePension(pension: Pension): Observable<any> {
-    return this.http.put(environment.apiUrl + `propiedades/${pension.id}`, {pension});
-  }
+    public getPension(id: number): Observable<any>  {
+      	return this.http.get(environment.apiUrl + `propiedades/${id}`);
+    }
+    
+    public updatePension(pension: Pension): Observable<any> {
+      	return this.http.put(environment.apiUrl + `propiedades/${pension.id}`, {
+			esambientefamiliar: pension.esAmbienteFamiliar,
+			escupocompleto: pension.esCupoCompleto,
+			descripcion: pension.descripcion
+     	});
+    }
 
-  public deletePension(id: number): Observable<any>  {
-    return this.http.delete(environment.apiUrl + `propiedades/${id}`);
-  }
+    public deletePension(id: number): Observable<any>  {
+      	return this.http.delete(environment.apiUrl + `propiedades/${id}`);
+    }
 
-  public filtrarPensiones(tipoSeleccionado: string, barrioSeleccionado: string, precioMinimo: number, precioMaximo: number, cupoCompleto:boolean, ambienteFamiliar: boolean, individual: boolean, aire: boolean): Observable<any> {
-    return this.http.get(environment.apiUrl +  `propiedades/${tipoSeleccionado}/${barrioSeleccionado}/${precioMinimo}/${precioMaximo}/${cupoCompleto}/${ambienteFamiliar}/${individual}/${aire}`);
-  }
+    getTiposPropiedad(): Observable<any> {
+      	return this.http.get(`${environment.apiUrl}tipos-propiedad`);
+    }
+
+    public filtrarPensiones(tipo_id: number, barrio_id: number, precioMinimo: number, precioMaximo: number, cupoCompleto:boolean, ambienteFamiliar: boolean, individual: boolean, aire: boolean): Observable<any> {
+      	return this.http.get(environment.apiUrl +  `propiedadesfiltro`, {
+			params: {
+				tipo: tipo_id,
+				barrio: barrio_id,
+				precioMin: precioMinimo,
+				precioMax: precioMaximo,
+				cupoCompleto: cupoCompleto,
+				ambienteFamiliar: ambienteFamiliar,
+				individual: individual,
+				aire: aire
+        	}
+      	});
+    }
 }
-
 
