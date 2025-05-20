@@ -1,0 +1,131 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.pension-card {
+    margin: 50px;
+    width: 400px;
+    height: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.pension-btn {
+    display: flex;
+    font-size: 24px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.pension-btn i:hover {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.data-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.cuartos-container {
+    display: flex;
+    text-align: center;
+    gap: 20px;
+}
+
+.cuarto {
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.datos-cuarto {
+    font-size: 18px;
+    padding: 15px;
+}
+
+.btn-cuarto {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-cuarto i {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.btn-cuarto i:hover {
+    font-size: 30px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); 
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.btn-modal {
+	gap: 20px;
+	text-align: center;
+	justify-content: space-around;
+}
+
+.input-modal {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.btn-modal {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+}
+
+.field {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+}
+
+.btn-modal button {
+	cursor: pointer;
+}
+
+.modal-content {
+    background-color:#f1e9e9;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}

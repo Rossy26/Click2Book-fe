@@ -118,7 +118,7 @@ export class PensionesComponent {
 		this.servcioCuarto.filterByPropiedad(idPension).subscribe({
 			next: (response) => {
 				for (let cuarto of response) {
-					this.cuartos.push(new Cuarto(cuarto.id, 0, 0, cuarto.tieneaire, cuarto.descripcion));
+					this.cuartos.push(new Cuarto(cuarto.id, 0, 0, cuarto.tieneaire, cuarto.descripcion, idPension));
 				}
 			},
 			error: (error) => {
@@ -153,3 +153,9 @@ export class PensionesComponent {
 		});
 	}
 }
+/*
+{
+	id: 1
+
+}
+*/

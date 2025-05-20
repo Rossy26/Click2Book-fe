@@ -37,7 +37,7 @@
 					<p class="pension-descripcion">{{ pension.descripcion }}</p>
 					<p class="pension-direccion">{{ pension.direccion }}</p>
 					<div class="btn-pension">
-						<i (click)="infoPension()" class="bi bi-info-circle"></i>
+						<i (click)="infoPension(pension.id)" class="bi bi-info-circle"></i>
 						<i (click)="editPension(pension)" class="bi bi-pencil-square"></i>
 						<i (click)="deletePension(pension.id)" class="bi bi-trash"></i>
 					</div>

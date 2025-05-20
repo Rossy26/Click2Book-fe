@@ -167,8 +167,8 @@ export class PropietarioComponent {
 		this.isAdding = true;
 	}
 
-	infoPension() {
-		this.router.navigate(["/pension"]);
+	infoPension(idPension: number) {
+		this.router.navigate([`/pension/${idPension}`]);
 	}
 
 	cargarCiudades() {
