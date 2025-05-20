@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path: 'user', component: UserComponent, canActivate:[authGuard]},
     {path: 'propietario', component: PropietarioComponent, canActivate: []},
     {path: 'reservas', component: ReservasComponent, canActivate: []},
-    {path: 'pension', component: PensionComponent, canActivate: []},
+    {path: 'pension/:id', component: PensionComponent, canActivate: []},
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
