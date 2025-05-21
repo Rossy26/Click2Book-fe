@@ -3,13 +3,13 @@
         <div id="filter-inputs">
           <div class="filter-select">
             <select [(ngModel)]="tipoSeleccionado">
-              <option value="0">Todos</option>
+              <option selected value="0">Todos</option>
               <option *ngFor="let tipo of tiposPropiedad" [value]="tipo.id">{{tipo.nombre}}</option>
             </select>
           </div>
           <div class="filter-select">
             <select [(ngModel)]="barrioSeleccionado">
-              <option value="0">Todos</option>
+              <option selected value="0">Todos</option>
               <option *ngFor="let barrio of barrios" [value]="barrio.id">{{barrio.nombre}}</option>
             </select>
           </div>
@@ -46,21 +46,31 @@
   <section id="pensiones">
     <div *ngFor="let pension of pensiones" class="pension-card">
       <div class="pension-image-container">
-        <i class="bi bi-arrow-left-short flecha izquierda"></i>
-        <img [src]="imagen" alt="Imagen de pensión" class="pension-image" />
-        <i class="bi bi-arrow-right-short flecha derecha"></i>
+        <div id="carousel{{ pension.id }}" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div *ngFor="let url of pension.images; let i = index" class="carousel-item" [class.active]="i === 0">
+              <img [src]="url" class="d-block w-100 pension-image" alt="Imagen de pensión"/>
+            </div>
+            <div *ngIf="pension.images.length === 0"class="carousel-item active">
+              <img [src]="imagen" class="d-block w-100 pension-image" alt="Imagen por defecto"/>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel' + pension.id" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next"type="button" [attr.data-bs-target]="'#carousel' + pension.id" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
       </div>
-      <h3 class="pension-tipo">{{ pension.descripcion}}</h3>
-      <p class="pension-precio">{{ pension.direccion }}</p>
-      <div class="pension-iconos">
-        <i (click)="abrirModal(pension.id)" class="bi bi-calendar" title="Agenda tu reserva"> </i>
-        <i class="bi bi-geo-alt" title="Ubicación"></i>
-        <i class="bi bi-bookmark" title="Guardados"></i>
-        <i class="bi bi-info-circle" title="Favoritos"></i>
-        <i class="bi bi-star" title="Valoración"></i>
+      <div class="pension-buttons mt-3 text-center">
+        <button (click)="abrirModal(pension.id)" class="btn btn-success">Reservar</button>
       </div>
-   </div>
- </section>
+    </div>
+  </section>
+
   <div class="modal" [class.show]="mostrarModal">
     <div class="modal-content">
       <h3>Reservar cuartos</h3>

@@ -7,10 +7,10 @@ export class Pension {
     direccion: string;
     tipo: string;
     descripcion: string;
-	imagenes: Imagen[];
 	barrio_id: number;
 	tipopropiedad_id: number;;
 	user_id: number;
+	images: string[];
 
     public constructor(id: number, user_id: number, esAmbienteFamiliar: boolean, esCupoCompleto: boolean, direccion: string, tipo: string, descripcion: string, barrio_id: number, tipopropiedad_id: number) {
 		this.id = id;
@@ -20,12 +20,12 @@ export class Pension {
 		this.direccion = direccion;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
-		this.imagenes = [];
 		this.barrio_id = barrio_id;
 		this.tipopropiedad_id = tipopropiedad_id;
+		this.images = [];
 	}
 
-	public addImgen(imagen: Imagen) {
-		this.imagenes.push(imagen);
+	public addImgen(imagen: string) {
+		this.images.push(imagen);
 	}
 }

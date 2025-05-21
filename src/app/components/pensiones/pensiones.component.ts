@@ -46,9 +46,26 @@ export class PensionesComponent {
   	ngOnInit(): void {
 		this.userName = localStorage.getItem('nombreUsuario') || 'Visitante';
 		this.servicio.getPensiones().subscribe({
-			next: (response) => {
-				for (let pension of response) {
-					this.pensiones.push(new Pension(pension.id, pension.user_id, pension.esambientefamiliar, pension.escupocompleto, pension.direccion, "", pension.descripcion, pension.barrio_id, pension.tipopropiedad_id));
+			next: (response: any[]) => {
+				this.pensiones = []
+				for (const p of response) {
+					const pen = new Pension(
+						p.id,
+						p.user_id,
+						p.esambientefamiliar,
+						p.escupocompleto,
+						p.direccion,
+						"",
+						p.descripcion,
+						p.barrio_id,
+						p.tipopropiedad_id
+					);
+					if (Array.isArray(p.imagenes) && p.imagenes.length > 0) {
+						for (const img of p.imagenes) {
+							pen.addImgen(img.full_url);
+						}
+					}
+					this.pensiones.push(pen);
 				}
 			},
 			error: (error) => {
