@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import {Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,11 @@ export class LoginComponent {
   constructor(private loginService: LoginService, private router: Router){}
   login() {
     if (!this.email || !this.password) {
-      alert('Por favor completa todos los campos');
+     Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Error en el inicio de sesión",
+        });
       return;
     }
     this.loginService.login(this.email, this.password).subscribe(response => {
@@ -30,7 +35,11 @@ export class LoginComponent {
       this.router.navigate(["/pensiones"]);
       
       if (!localStorage.getItem("nombreUsuario")) {
-        alert('¡Error en el inicio de sesión!');
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Error en el inicio de sesión",
+        });
       }
     });
   }

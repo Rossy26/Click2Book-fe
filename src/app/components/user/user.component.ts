@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user',
@@ -33,9 +34,17 @@ export class UserComponent {
       next: () => {
         localStorage.clear()
         this.router.navigate(['/login'])
-        alert('Cuenta eliminada exitosamente');
+        Swal.fire({
+          title: "Cuenta eliminada exitosamente",
+          icon: "success",
+          draggable: true
+        });
       }, error: () => {
-        alert("Hubo un erro al eliminar tu cuenta");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Hubo un error al eliminar tu cuenta",
+        });
       }
     });
 
@@ -50,7 +59,11 @@ export class UserComponent {
   }
   guardar() {
     if (this.nuevoNombre == this.nombre) {
-      alert('Debes escribir un nombre distino');
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Debes escribir un nombre distinto",
+        });
       return;
     }
     this.loginService.updateUser({name: this.nuevoNombre}).subscribe({
@@ -58,10 +71,18 @@ export class UserComponent {
         this.nombre = this.nuevoNombre;
         localStorage.setItem('nombreUsuario', this.nombre);
         this.editando = false;
-        alert('Usuario actualizado correctamente');
+        Swal.fire({
+          title: "Usuario actualizado correctamente",
+          icon: "success",
+          draggable: true
+        });
       },
       error:() => {
-        alert('Error al acutualizar el usuario');
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Error al actualizar el usuario",
+        });
       }
     });
   }
