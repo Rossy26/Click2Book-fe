@@ -166,8 +166,11 @@ export class PropietarioComponent {
 					title: "Pension creada correctamente",
 					icon: "success",
 					draggable: true
-				});
-				location.reload();
+				}).then(
+					()=> location.reload()
+
+				);
+				
 			},
 			error: (error) => {
 				Swal.fire({
