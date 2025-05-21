@@ -105,10 +105,11 @@ borrarCuarto(idcuarto: number) {
                 Swal.fire({
                     title: "Cuarto creado correctamente",
                     icon: "success",
-                    draggable: true
-                });
-                this.provisionalCuarto = new Cuarto(0, 0, 0, false, "", 0);
-                location.reload();
+                    showConfirmButton: true,
+                    allowOutsideClick: false
+                }).then(
+                    () => location.reload()
+                );
             },
             error: (error) => {
                 Swal.fire({
@@ -128,8 +129,9 @@ borrarCuarto(idcuarto: number) {
                     title: "Cuarto editado correctamente",
                     icon: "success",
                     draggable: true
-                });
-                location.reload();
+                }).then(
+                    () => location.reload()
+                )
             },
             error: (error) => {
                 Swal.fire({
