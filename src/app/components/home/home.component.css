@@ -12,6 +12,11 @@
     display: inline-block;
 }
 
+.hero .lead {
+  color: #49362e; 
+  
+}
+
 .hero h1 {
     font-size: 32px;
     margin-bottom: 15px;
@@ -25,12 +30,15 @@
 
 .hero a {
     font-weight:bold;
-    color: #5D4037;
-    text-decoration: underline;
+    color: #78594d !important;
+    text-decoration: underline !important;
+    transition: color 0.3s ease !important;
 }
 
+
 .hero a:hover{
-   font-weight: bolder;
+    color: #4e332b !important;
+    font-weight: bolder !important;
 }
 
 .top-rated {
@@ -45,15 +53,30 @@
     margin-bottom: 30px;
     font-weight: 600;
 }
+.hero .btn-primary {
+  background-color: #bfa8a0 !important;  
+  border-color:   #9f867d !important;    
+  color: #5D4037 !important;             
+}
+.hero .btn-primary:hover {
+  background-color: #8d6e63 !important;
+  border-color:   #6d4c41 !important;
+}
 
 .pension-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
+    gap: 20px;
+}
+
+.pension-card{
+    max-width: 300px;
+    width: 100%;
 }
 
 .pension-list .card {
+    display: flex;
     border: none;
     border-radius: 10px;
     overflow: hidden;
