@@ -5,10 +5,10 @@
     <div class="reservas">
         <div class="reserva" *ngFor="let reserva of reservas">
             <h4>Reserva</h4>
-            <p>cuarto: {{reserva.cuarto_id}}</p>
-            <p>tipo de reserva: {{reserva.tiporeserva_id}}</p>
-            <p>desde: {{reserva.inicio}}</p>
-            <p>hasta: {{reserva.fin}}</p>
+            <p>Cuarto: {{reserva.cuarto_id}}</p>
+            <p>Tipo de reserva: {{reserva.tiporeserva_id}}</p>
+            <p>Desde: {{reserva.inicio}}</p>
+            <p>Hasta: {{reserva.fin}}</p>
             <div class="buttons">
                 <i class="bi bi-trash" (click)="borrarReserva(reserva.id)"></i>
             </div>
