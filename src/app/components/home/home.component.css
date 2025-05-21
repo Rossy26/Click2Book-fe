@@ -3,6 +3,7 @@
     padding: 60px 20px;
     color: #ffffff;
 }
+
 .main-container {
     background-color: rgba(249, 244, 240, 0.5);  
     color: #5D4037;              
@@ -10,6 +11,7 @@
     border-radius: 4px;          
     display: inline-block;
 }
+
 .hero h1 {
     font-size: 32px;
     margin-bottom: 15px;
@@ -31,15 +33,11 @@
    font-weight: bolder;
 }
 
-
-
 .top-rated {
     padding: 60px 20px;
     text-align: center;
     color: #5D4037;
    background-color: rgba(223, 208, 196, 0.9); 
-
-
 }
 
 .top-rated h2 {
@@ -123,7 +121,6 @@
     z-index: 1;
 }
 
-
 .bg-benefits::before {
     content: '';
     position: absolute;
@@ -131,10 +128,12 @@
     background-color: rgba(111, 97, 88, 0.6); 
     z-index: -1;
 }
+
 section {
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
 section {
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px); 
