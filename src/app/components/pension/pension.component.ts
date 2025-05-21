@@ -6,6 +6,7 @@ import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Cuarto } from '../../models/cuarto';
 import { CuartoService } from '../../services/cuartos/cuarto.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-pension',
@@ -41,7 +42,11 @@ export class PensionComponent {
                 this.pension.user_id = response.user_id;
             },
             error: (error) => {
-               alert("Hubo un error al cargar la pensión");
+               Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Hubo un error al cargar la pensión",
+                });
             }
         });
         this.cuartos = [];
@@ -52,34 +57,65 @@ export class PensionComponent {
                 }
             },
             error: (error) => {
-                alert("Hubo un error al cargar los cuartos de esta pensión");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Hubo un error al cargar los datos de esta pensión",
+                });
             }
         });
         
 	}
 
-    borrarCuarto(idcuarto: number) {
-        this.servicioCuarto.deleteCuarto(idcuarto).subscribe({
-            next: (response) => {
-                alert("Cuarto eliminado correctamente");
-                location.reload();
-            },
-            error: (error) => {
-                alert("No se ha podido eliminar este cuarto");
+borrarCuarto(idcuarto: number) {
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.servicioCuarto.deleteCuarto(idcuarto).subscribe({
+                next: () => {
+                Swal.fire("Eliminado", "El cuarto ha sido eliminado.", "success").then(() => {
+                    location.reload();
+                    });
+                },
+            error: () => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No se ha podido eliminar este cuarto",
+                });
             }
-        });
-    }
+            });
+        }
+     });
+}
+
 
     crearCuarto() {
         this.provisionalCuarto.propiedad_id = this.idPension;
         this.servicioCuarto.createCuarto(this.provisionalCuarto).subscribe({
             next: (response) => {
-                alert("Cuarto creado correctamente");
+                Swal.fire({
+                    title: "Cuarto creado correctamente",
+                    icon: "success",
+                    draggable: true
+                });
                 this.provisionalCuarto = new Cuarto(0, 0, 0, false, "", 0);
                 location.reload();
             },
             error: (error) => {
-                alert("No se ha podido crear este cuarto");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No se ha podido crear este cuarto",
+                });
                 console.log(error);
             }
         });
@@ -88,11 +124,19 @@ export class PensionComponent {
     updateCuarto() {
         this.servicioCuarto.updateCuarto(this.editCuarto).subscribe({
             next: (response) => {
-                alert("Cuarto editado correctamente");
+                Swal.fire({
+                    title: "Cuarto editado correctamente",
+                    icon: "success",
+                    draggable: true
+                });
                 location.reload();
             },
             error: (error) => {
-                alert("No se ha podido editar este cuarto");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No se ha podido editar este cuarto",
+                });
                 console.log(error);
             }
         });

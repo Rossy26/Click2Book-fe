@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RegistroService } from '../../services/registro.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -31,11 +32,19 @@ export class RegistroComponent {
   }
   register() {
     if(!this.fechaNacimiento) {
-      alert('Por favor selecciona una fecha de nacimiento válida');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Por favor selecciona una fecha de nacimiento válida",
+      });
       return;
     }
     if(this.contrasena != this.confirmarContrasena) {
-      alert('Las contraseñas no coinciden');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden",
+      });
       return;
     }
 
@@ -49,7 +58,11 @@ export class RegistroComponent {
       localStorage.setItem("emailUsuario", response.user_email);
       this.router.navigate(["/pensiones"]);
     }, error: (error) => {
-      alert('Error al momento de registrarse ' + error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Error al momento de registrarse",
+      });
     }
   });
   }

@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { Reserva } from '../../models/reserva';
 import { ReservaService } from '../../services/reservas/reserva.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reservas',
@@ -16,7 +17,11 @@ export class ReservasComponent {
   	ngOnInit(): void {
     	const idUserStr = localStorage.getItem('idUsuario');
     	if (!idUserStr) {
-      		alert("Debes iniciar sesion");
+      		Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Debes iniciar sesión",
+			});
       		return;
     	}
     	const idUsuario = parseInt(idUserStr);
@@ -27,21 +32,38 @@ export class ReservasComponent {
         		}
       		},
       		error: (error) => {
-        		alert("Error al cargar las reservas");
+        		Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Error al cargar las reservas",
+			});
       		}
     	});
   	}
 	borrarReserva(reserva_id: number) {
-		// pedir confirmacion
-		this.reservaService.deleteReserva(reserva_id).subscribe({
-			next: (response) => {
-				alert("Reserva borrada exitosamente");
-				location.reload();
-			},
-			error: (error) => {
-				alert("No se pudo borrar la reserva");
-			}
-		});
+  		Swal.fire({
+    		title: "¿Estás seguro?",
+    		text: "Esta acción eliminará la reserva de forma permanente.",
+    		icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Sí, eliminar",
+			cancelButtonText: "Cancelar"
+  		}).then((result) => {
+    		if (result.isConfirmed) {
+      			this.reservaService.deleteReserva(reserva_id).subscribe({
+        			next: () => {
+          				Swal.fire("Eliminado", "La reserva fue borrada exitosamente.", "success").then(() => {
+            				location.reload(); // Solo si se eliminó correctamente
+         			 	});
+        			},
+        			error: () => {
+          				Swal.fire("Error", "No se pudo borrar la reserva.", "error");
+        			}
+      			});
+    		}
+ 		 });
 	}
 
 }

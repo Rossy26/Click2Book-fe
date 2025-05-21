@@ -11,6 +11,7 @@ import { Ciudad } from '../../models/ciudad';
 import { Barrio } from '../../models/barrio';
 import { TipoPropiedad } from '../../models/tipospropiedad';
 import { LocacionService } from '../../services/locaciones/locacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-propietario',
@@ -50,7 +51,11 @@ export class PropietarioComponent {
     	const idPropietarioStr = localStorage.getItem('idUsuario');
 
 		if (!nombreCache || !idPropietarioStr) {
-			alert("Debes logearte");
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Debes logearte",
+			});
 			return;
 		} else {
 			this.nombre = nombreCache.toString();
@@ -75,7 +80,11 @@ export class PropietarioComponent {
 			},
 			error: (error) => {
 				console.log(error);
-				alert("Hubo un error al cargar las pensiones");
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Hubo un error al cargar las pensiones",
+				});
 			}
 		});
 		this.cargarCiudades();
@@ -83,15 +92,29 @@ export class PropietarioComponent {
 	}
 
 	deletePension(idPension: number) {
-		this.servicio.deletePension(idPension).subscribe({
-			next: (response) => {
-				alert("Pension eliminada correctamente");
-				location.reload();
-			},
-			error: (error) => {
-				alert("No se pudo eliminar la pension");
-			}
-		});
+  		Swal.fire({
+    		title: "¿Estás seguro?",
+			text: "¡Esta acción no se puede deshacer!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Sí, eliminar",
+			cancelButtonText: "Cancelar"
+  		}).then((result) => {
+    		if (result.isConfirmed) {
+      			this.servicio.deletePension(idPension).subscribe({
+        			next: () => {
+          				Swal.fire("Eliminado", "La pensión ha sido eliminada correctamente.", "success").then(() => {
+            				location.reload(); 
+         				});
+       				},
+        			error: () => {
+          				Swal.fire("Error", "No se pudo eliminar la pensión.", "error");
+        			}
+     	 		});
+    		}
+  		});
 	}
 
 	editPension(pension: Pension) {
@@ -109,7 +132,11 @@ export class PropietarioComponent {
 		}
 		this.servicio.updatePension(this.pensionSelected).subscribe({
 			next: (response) => {
-				alert("Pension modificada correctamente");
+				Swal.fire({
+					title: "Pension modificada correctamente",
+					icon: "success",
+					draggable: true
+				});
 			},
 			error: (error) => {
 				this.pensionSelected.esAmbienteFamiliar = this.ambienteFamiliarAnterior;
@@ -118,7 +145,11 @@ export class PropietarioComponent {
 				this.cupocompletoAnterior = false;
 				this.descripcionAnterior = "";
 				this.ambienteFamiliarAnterior = false;
-				alert("No se ha podido modificar la pension");
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "No se ha podido modificar la pensión",
+				});
 			}
 		});
 		this.cerrarModalEditing();
@@ -131,11 +162,19 @@ export class PropietarioComponent {
 
 		this.servicio.createPension(this.newPension).subscribe({
 			next: (response) => {
-				alert("Pension creada correctamente");
+				Swal.fire({
+					title: "Pension creada correctamente",
+					icon: "success",
+					draggable: true
+				});
 				location.reload();
 			},
 			error: (error) => {
-				alert("Hubo un error al guardar la pension");
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Hubo un error al guardar la pensión",
+				});
 			}
 		});
 		this.cerrarModalAdding();
@@ -174,7 +213,11 @@ export class PropietarioComponent {
 	cargarCiudades() {
 	    this.servicioLocaciones.getCiudades().subscribe({
 			next: (data) => this.ciudades = data,
-			error: () => alert("Error al cargar barrios")
+			error: () => Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Hubo un error al cargar las ciudades",
+						})
 		});
 	}
 	
@@ -185,14 +228,22 @@ export class PropietarioComponent {
 		}
 	    this.servicioLocaciones.filtrarBarriosPorCiudad(idCiudad).subscribe({
 			next: (data) => this.barrios = data,
-			error: () => alert("Error al cargar barrios")
+			error: () => Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Hubo un error al cargar los barrios",
+						})
     	});
 	}
 
 	cargarTiposPropiedad() {
 		this.servicio.getTiposPropiedad().subscribe({
 			next: (data) => this.tiposdePropiedad = data,
-			error: () => alert("Error al cargar barrios")
+			error: () => Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Hubo un error al cargar las propiedades",
+						})
 		});
 	}
 }

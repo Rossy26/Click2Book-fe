@@ -11,6 +11,7 @@ import { Reserva } from '../../models/reserva';
 import { Barrio } from '../../models/barrio';
 import { TipoPropiedad } from '../../models/tipospropiedad';
 import { LocacionService } from '../../services/locaciones/locacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-pensiones',
@@ -51,7 +52,11 @@ export class PensionesComponent {
 				}
 			},
 			error: (error) => {
-				alert("Hubo un error al cargar las pensiones");
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Hubo un error al cargar la pensión",
+				});
 			}
 		});
 
@@ -62,7 +67,11 @@ export class PensionesComponent {
 
 		this.servicio.getTiposPropiedad().subscribe({
 			next: (data) => this.tiposPropiedad = data,
-			error: () => alert("Error al cargar tipos de propiedad")
+			error: () => Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: "Error al cargar tipos de propiedad",
+						})
 		});
   	}
   
@@ -73,7 +82,11 @@ export class PensionesComponent {
 			},
 			error: (err) => {
 				console.error(err);
-				alert('Error al buscar cuartos');
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Error al buscar cuartos",
+				});
 			}
 		});
   	}
@@ -96,7 +109,11 @@ export class PensionesComponent {
         		}
       		},
       		error: (error) => {
-        		alert("Hubo un error al cargar las pensiones filtradas");
+        		Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Hubo un error al cargar las pensiones filtradas",
+				});
       		}
     	});
   	}
@@ -122,7 +139,11 @@ export class PensionesComponent {
 				}
 			},
 			error: (error) => {
-				alert("Error al cargar los cuartos");
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Error al cargar los cuartos",
+				});
 			}
 		});
 	}
@@ -137,18 +158,30 @@ export class PensionesComponent {
   	reservar(idCuarto: number) {
 		const idUsuarioStr = localStorage.getItem('idUsuario');
 		if (!idUsuarioStr) {
-			alert('No se encontró el ID del usuario. Por favor, inicia sesión.');
+			Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Hubo un error al cargar la pensión",
+				});
 			return;
 		}
 		const idUsuario = parseInt(idUsuarioStr);
 		this.servicioReserva.createReserva(new Reserva(0, idUsuario, idCuarto, this.fechaInicio, this.fechaFin, this.cantidadPensionados)).subscribe({
 			next: (response) => {
-				alert('Reserva realizada con éxito');
+				Swal.fire({
+					title: "Reserva realizada con exito",
+					icon: "success",
+					draggable: true
+				});
 				this.cerrarModal();
 			},
 			error: (error) => {
 				console.log(error);
-				alert('Error al realizar la reserva');
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Error al cargar las reservas",
+				});
 			}
 		});
 	}
