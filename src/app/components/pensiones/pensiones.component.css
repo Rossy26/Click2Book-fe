@@ -98,8 +98,8 @@ nav a:hover {
 }
 
 #filter-btn button[type="reset"] {
-  background-color: #bbb;
   color: #333;
+  background-color: #bbb;
 }
 
 
