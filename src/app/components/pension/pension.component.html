@@ -68,9 +68,10 @@
             <h1>Añadiendo una imagen</h1>
             <div class="input-modal">
                 <div class="field">
-
+                    <input (change)="onImagenSeleccionada($event)" type="file" name="imagen" id="imagen">
                 </div>
                 <div class="btn-modal">
+                    <button (click)="cargarImagen()" type="button">Aceptar</button>
                     <button (click)="cerrarModalAddFoto()" type="button">Cancelar</button>
                 </div>
             </div>

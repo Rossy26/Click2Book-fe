@@ -6,6 +6,9 @@ import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Cuarto } from '../../models/cuarto';
 import { CuartoService } from '../../services/cuartos/cuarto.service';
 import { FormsModule } from '@angular/forms';
+import { ImagenService } from '../../services/imagenes/imagen.service';
+import { Imagen } from '../../models/imagen';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,7 +26,9 @@ export class PensionComponent {
     isCreating = false;
     isEditing = false;
     isAddingFotos = false;
-    constructor(private servicioPension: PensionService, private servicioCuarto: CuartoService, private route: ActivatedRoute) {}
+    imagen: Imagen = new Imagen(0, "", null, 0);
+
+    constructor(private servicioImagen: ImagenService, private servicioPension: PensionService, private servicioCuarto: CuartoService, private route: ActivatedRoute) {}
 	ngOnInit() {
 		const id = this.route.snapshot.paramMap.get("id");
         if (!id) {
@@ -143,7 +148,27 @@ borrarCuarto(idcuarto: number) {
             }
         });
     }
-    
+
+    cargarImagen() {
+        this.servicioImagen.createImagen(this.idPension, this.imagen).subscribe({
+            next: (response) => {
+                alert("Imagen cargada correctamente");
+                location.reload();
+            },
+            error: (error) => {
+                console.log(error);
+               alert("Error al cargar la imagen");
+            }
+        });
+    }
+    onImagenSeleccionada(event: Event) {
+        const archivo = event.target as HTMLInputElement;
+        if (archivo.files && archivo.files.length > 0) {
+            const imagenFile: File = archivo.files[0];
+            this.imagen.imagen = imagenFile;
+        }
+    }
+
     abrirModalCrear() {
         this.isCreating = true;
     }
