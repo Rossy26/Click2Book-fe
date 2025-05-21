@@ -25,30 +25,40 @@ export class UserComponent {
   nuevoNombre:string = this.nombre;
   editando = false;
 
-  eliminar() {
-    const confirmacion = confirm('Seguro que deseas eliminar tu cuenta?');
-    if (!confirmacion) {
-      return;
+eliminar() {
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "Seguro que deseas eliminar tu cuenta",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.loginService.deleteUser().subscribe({
+        next: () => {
+          localStorage.clear();
+          this.router.navigate(['/login']);
+          Swal.fire({
+            title: "Cuenta eliminada exitosamente",
+            icon: "success",
+            draggable: true
+          });
+        },
+        error: () => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Hubo un error al eliminar tu cuenta",
+          });
+        }
+      });
     }
-    this.loginService.deleteUser().subscribe({
-      next: () => {
-        localStorage.clear()
-        this.router.navigate(['/login'])
-        Swal.fire({
-          title: "Cuenta eliminada exitosamente",
-          icon: "success",
-          draggable: true
-        });
-      }, error: () => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Hubo un error al eliminar tu cuenta",
-        });
-      }
-    });
+  });
+}
 
-  }
 
   editar() {
     this.editando = true;
